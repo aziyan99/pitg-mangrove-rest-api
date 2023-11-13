@@ -1,0 +1,58 @@
+<%- include('../layouts/head.ejs') %>
+<%- include('../layouts/header.ejs') %>
+<%- include('../layouts/sidemenu.ejs') %>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Edit mangrove</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">Mangroves</li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card mb-5">
+                    <form action="/mangroves/<%= mangrove.getDataValue('id') %>/edit" method="post"> 
+                        <input type="hidden" name="_method" value="PUT">
+
+                        <div class="card-header">Edit mangrove form</div>
+                        <div class="card-body">
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input name="name" type="text" id="name" class="form-control" autocomplete="off"
+                                    value="<%= mangrove.getDataValue('name') %>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="dataId" class="form-label">Data ID</label>
+                                <input name="dataId" type="number" id="dataId" class="form-control"
+                                    value="<%= mangrove.getDataValue('dataId') %>" autocomplete="off" disabled required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="image" class="form-label">Image URL</label>
+                                <input type="text" name="image" id="image" class="form-control"
+                                    value="<%= mangrove.getDataValue('image') %>" autocomplete="off" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description (<a href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markdown support</a>)</label>
+                                <textarea name="description" id="description" cols="30" rows="10"
+                                    class="form-control"><%= mangrove.getDataValue('description') %></textarea>
+                            </div>
+
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary"><b>Update</b></button>
+                            <a href="/mangroves" class="btn btn-default ms-2"><b>Cancel</b></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('../layouts/footer.ejs') %>
+            
+            

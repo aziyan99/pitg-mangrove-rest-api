@@ -1,0 +1,51 @@
+<%- include('../layouts/head.ejs') %>
+<%- include('../layouts/header.ejs') %>
+<%- include('../layouts/sidemenu.ejs') %>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Mangroves</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Mangroves</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="mb-3">
+                    <a href="/mangroves/create" class="btn-primary btn"><b>Add mangrove</b></a>
+                </div>
+                <div class="card">
+                    <div class="card-header">Mangroves</div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Data ID</th>
+                                    <th>Name</th>
+                                    <th>Image</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i = 0; i < mangroves.length; i++) { %>
+                                    <tr>
+                                        <td>
+                                            <a class="me-2" href="/mangroves/<%= mangroves[i].getDataValue('id') %>/edit">edit</a>
+                                            <!-- <a href="#" onclick="confirmDelete(<%= mangroves[i].getDataValue('id') %>);">delete</a>
+                                            <form id="delete-form-<%= mangroves[i].getDataValue('id') %>" 
+                                                action="/mangroves/<%= mangroves[i].getDataValue('id') %>/delete" method="POST" class="d-none"></form> -->
+                                        </td>
+                                        <td><%= mangroves[i].getDataValue('dataId') %></td>
+                                        <td><%= mangroves[i].getDataValue('name') %></td>
+                                        <td><%= mangroves[i].getDataValue('image') %></td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('../layouts/footer.ejs') %>
+            

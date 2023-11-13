@@ -1,0 +1,51 @@
+<%- include('../layouts/head.ejs') %>
+<%- include('../layouts/header.ejs') %>
+<%- include('../layouts/sidemenu.ejs') %>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Configs</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Configs</li>
+        </ol>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+
+                <div class="alert alert-info">
+                    <b>Textarea</b> field(s) can be fill out with <a href="https://www.markdownguide.org/basic-syntax/" target="_blank">markdown</a> sytanx
+                </div>
+
+                <div class="card mb-5">
+                    <form action="/configs" method="post">
+                        <div class="card-header">Configs value</div>
+                        <div class="card-body">
+                            
+                            <% for(let i = 0; i < configs.length; i++) { %>
+
+                                <% if(configs[i].getDataValue('input') === 'text') { %>
+                                    <div class="mb-3">
+                                        <label for="<%= configs[i].getDataValue('key') %>" class="form-label"><%= configs[i].getDataValue('key') %></label>
+                                        <input type="text" id="<%= configs[i].getDataValue('key') %>" class="form-control" name="<%= configs[i].getDataValue('key') %>" value="<%= configs[i].getDataValue('value') %>" required>
+                                    </div>
+                                <% } %>
+
+
+                                <% if(configs[i].getDataValue('input') === 'textarea') { %>
+                                    <div class="mb-3">
+                                        <label for="<%= configs[i].getDataValue('key') %>" class="form-label"><%= configs[i].getDataValue('key') %></label>
+                                        <textarea id="<%= configs[i].getDataValue('key') %>" class="form-control" name="<%= configs[i].getDataValue('key') %>" cols="30" rows="10" required><%= configs[i].getDataValue('value') %></textarea>
+                                    </div>
+                                <% } %>
+
+                            <% } %>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary"><b>Update</b></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('../layouts/footer.ejs') %>
+            

@@ -1,0 +1,48 @@
+<%- include('../layouts/head.ejs') %>
+<%- include('../layouts/header.ejs') %>
+<%- include('../layouts/sidemenu.ejs') %>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Users</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Users</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-3">
+                    <a href="/users/create" class="btn-primary btn"><b>Add user</b></a>
+                </div>
+                <div class="card">
+                    <div class="card-header">Users</div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Username</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(let i = 0; i < users.length; i++) { %>
+                                    <tr>
+                                        <td>
+                                            <% if (users[i].getDataValue('username') !== 'admin') { %>
+                                                <a href="#" onclick="confirmDelete(<%= users[i].getDataValue('id') %>);">delete</a>
+                                                <form id="delete-form-<%= users[i].getDataValue('id') %>" 
+                                                    action="/users/<%= users[i].getDataValue('id') %>/delete" method="POST" class="d-none"></form>
+                                            <% } %>
+                                        </td>
+                                        <td><%= users[i].getDataValue('username') %></td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<%- include('../layouts/footer.ejs') %>
+            
